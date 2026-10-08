@@ -56,6 +56,8 @@ numbers = [
 [7, 8, 9]
 ]
 
+print(range(len(numbers)))
+
 """
 numbers2 = [list_1, list_2, list_3]
 print(numbers2)
@@ -82,21 +84,101 @@ print(sum_nested(numbers))
 
 #3.4 Create a 5x5 List
 #Write a function that uses nested for loops to create a 5x5 list of numbers from 1 to 25. Store the result in a new variable.
-def list_create()
-    l = [[0]*5]*5
+def list_create():
+    l = [
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+    ]
     counter=1
     for rows in range(5):
         for columns in range(5): 
             l[rows][columns]=counter
             counter+=1
-return l
+    return l
 
-
-    
+m = list_create()
+print(range(len(m)))
+print(range(len(m[0])))
+print(m)
 
 
 
 #1. Write a function that replaces all multiples of 3 with “?”. Store the updated 5x5 list in anew variable.
+def replace(l):
+    #range(len(l)) gives the indices of the rows of the nested list
+    for row in range(len(l)):
+        for column in range(len(l[row])): #range(len(l[0])) gives the indices of the columns of the first row
+            if l[row][column]%3==0: 
+                l[row][column]="?"
+    return l
+
+r= replace(m)
+print(r)
+
 #2. Write a function that adds all elements not equal to “?” and returns the sum. Save the result in a variable.Hint: Use != to skip “?”.
 #Note: To clarify, edit the list with the first function and then edit it again with the second function.
+def total_sum(l):
+    total=0
+    for row in range(len(l)):
+        for column in range(len(l[row])):
+            if l[row][column]!="?":
+                total+=l[row][column]
+    return total
+
+t= total_sum(r)
+print(t)
+
+""" I want to check whether I can write a function that does the same in another way
+def total_sum2(r):
+    total=0
+    for row in r:
+        for column in row:
+            total+=column
+    return total
+
+r=list_create()
+
+print(r)
+print(total_sum2(r))
+
+"""
+
+
+#4 dictionaries
+ages = {
+"Katie": 30,
+"Mariam": 42,
+"Safia": 25,
+"Mira": 48
+}
+
+#1.Print “Katie”’s age.
+print(ages["Katie"])
+
+#2. change mira's age to 100
+ages["Mira"]=100
+print(ages)
+
+# Add ‘‘Milana" with an age of 52.
+ages["Milana"]=52
+
+del ages["Mariam"]
+
+print(ages)
+
+"""
+for key, value in ages.items():
+    print(f"{key} is {value} years old.")
+
+for key in ages:
+    print(key)
+
+for value in ages.values():
+    print(value)
+"""
+
+
 
