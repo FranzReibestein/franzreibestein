@@ -44,7 +44,7 @@ def name(n):
     for keys in n:
         print(keys)
 
-# i dont have to call the print function because the name function already includes print commands
+# i dont have to call the print function because the name function already includes a print command
 name(targets)
 
 # 2) Write a function that uses a loop to print the name of each star with its spectral type.
@@ -77,9 +77,9 @@ print(targets)
 def bright_twenty(h):
     min_distance = 100 #choose a high distance which will be undercut with a 100 percent chance
     best_star=None
-    for star, cat in h.items():
-        dec_str= cat["Dec"]
-        dec_number = float(dec_str.replace("−", "-").split("°")[0]) #cut the decimal string into two parts and grab the first of the two elements. I also inserted a proper minus sign
+    for star, cat in h.items(): # loop over key value pairs
+        dec_str= cat["Dec"] #save the value of the decimal string of the recent target
+        dec_number = float(dec_str.replace("−", "-").split("°")[0]) #cut the decimal string into two parts and grab the first of the two elements, save this number not as a string but as a float variable. I also inserted a proper minus sign
         distance=abs(dec_number-20)
         if distance<min_distance:
             best_star=star
@@ -88,7 +88,7 @@ def bright_twenty(h):
 bright_twenty(targets)
 
 # 6) What is your favorite constellation?
-# I have no favorite constellation because I have no knowledge about constellations.
+# I have no favorite constellation because I have no knowledge about constellations (because I am an economics student).
 
                 
 

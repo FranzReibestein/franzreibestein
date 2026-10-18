@@ -2,21 +2,25 @@
 #3.1 List Operations
 
 fav_food=["apple", "pear", "orange", "raspberry", "mango"]
-print(fav_food[1])
-fav_food.append("ananas")
-fav_food.insert(0, "apple")
-print(fav_food)
+print(fav_food[1]) #print second element
+print(fav_food[-1]) #print last element with negative indexing
+fav_food.append("ananas") #appending new fruit
 
-fav_food.remove("pear")
-print(len(fav_food))
+"""I encountered this error: 
+TypeError: insert expected 2 arguments, got 1
+I wrote: fav_food.insert("apple"). The problem is that the index of the element to be inserted is missing
+I fixed it by plugging in the index: fav_food.insert(0, "apple")"""
+
+fav_food.insert(0, "apple") #inserting apple at teh start of the list
+#print(fav_food) 
+
+fav_food.pop(2) #removing the third item
+print(len(fav_food)) #printing the elements
 
 for i in fav_food: print(i.upper())
-for i in range(len(fav_food)): print(fav_food[i].upper())
+#for i in range(len(fav_food)): print(fav_food[i].upper())
 
-print(fav_food)
-
-food_new = fav_food[::5]
-print(food_new)
+food_new = fav_food[::5] #creating a new list containing on the first and the last element by striding
 
 #check whether a certain string is contained in the list
 if food_new == "Potato":
@@ -28,10 +32,10 @@ else:
 numbers=list(range(21))
 
 def get_first_15(numbers):
-   return numbers[:15]
+   return numbers[:15] #from element with index zero to element with index 14 = first 15 elments
 
 def get_every_5th(lst):
-    return lst[::5]
+    return lst[::5] #returns every 5th element
 
 def reverse_and_stride(lst):
     reversed_list = lst[::-1]
@@ -47,9 +51,15 @@ print(step1, step2, step3)
 #3.3 Nested Lists
 #3.3.1 Nested List Operations
 
+
+"""Here, I made a logical mistake first. I wanted to put the following 3 lists into one list.
 list_1 = [1, 2, 3]
 list_2 = [4, 5, 6]
 list_3 = [7, 8, 9]
+But this would not have worked because this would have given me a longer list with 3 list elements in one dimension
+and not a matrix with 2 dimensions.
+"""
+
 numbers = [
 [1, 2, 3],
 [4, 5, 6],
@@ -59,6 +69,7 @@ numbers = [
 print(range(len(numbers)))
 
 """
+Checking the correctness of the logical error above. printing numbers gives a one dimensional list with three elements and not a matrix
 numbers2 = [list_1, list_2, list_3]
 print(numbers2)
 print(numbers)
@@ -85,24 +96,19 @@ print(sum_nested(numbers))
 #3.4 Create a 5x5 List
 #Write a function that uses nested for loops to create a 5x5 list of numbers from 1 to 25. Store the result in a new variable.
 def list_create():
-    l = [
+    l = [ #creat a list with zeros only in 5 rows and 5 columns
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0]
     ]
-    counter=1
-    for rows in range(5):
-        for columns in range(5): 
-            l[rows][columns]=counter
-            counter+=1
+    counter=1 #setting a counter to fill the list
+    for rows in range(5): #iterating over rows with index 0 to 4
+        for columns in range(5):  #iterating over columns in each row
+            l[rows][columns]=counter #filling each cell with the counter value
+            counter+=1 #increase the counter value by one
     return l
-
-m = list_create()
-print(range(len(m)))
-print(range(len(m[0])))
-print(m)
 
 
 
@@ -111,40 +117,26 @@ def replace(l):
     #range(len(l)) gives the indices of the rows of the nested list
     for row in range(len(l)):
         for column in range(len(l[row])): #range(len(l[0])) gives the indices of the columns of the first row
-            if l[row][column]%3==0: 
+            if l[row][column]%3==0: #if cell value is divisble by 3 replace the cell value with a ?
                 l[row][column]="?"
     return l
 
+m=list_create()
 r= replace(m)
-print(r)
+#print(r)
 
 #2. Write a function that adds all elements not equal to “?” and returns the sum. Save the result in a variable.Hint: Use != to skip “?”.
 #Note: To clarify, edit the list with the first function and then edit it again with the second function.
 def total_sum(l):
-    total=0
-    for row in range(len(l)):
-        for column in range(len(l[row])):
-            if l[row][column]!="?":
+    total=0 #define a counter for the total sum
+    for row in range(len(l)): #iteratate over rows in l. 
+        for column in range(len(l[row])): #iterate over the columns of each row
+            if l[row][column]!="?": #if a cell value is unequal to a question mark, increase the total sum with the cell's value
                 total+=l[row][column]
     return total
 
-t= total_sum(r)
-print(t)
-
-""" I want to check whether I can write a function that does the same in another way
-def total_sum2(r):
-    total=0
-    for row in r:
-        for column in row:
-            total+=column
-    return total
-
-r=list_create()
-
-print(r)
-print(total_sum2(r))
-
-"""
+#t= total_sum(r)
+#print(t)
 
 
 #4 dictionaries
@@ -157,28 +149,38 @@ ages = {
 
 #1.Print “Katie”’s age.
 print(ages["Katie"])
+"""
+I encountered this error
+   KeyError: 1
+   I wrote: Print(ages[1]). The error was that I cannot access the value of the first key by calling the dictionary and index element with index 1
+   I corrected it by writing print(ages["Katie"]), so, I wrote tha name of the key whose value I want to print out.
+"""
+
 
 #2. change mira's age to 100
 ages["Mira"]=100
-print(ages)
+#print(ages)
 
 # Add ‘‘Milana" with an age of 52.
 ages["Milana"]=52
 
 del ages["Mariam"]
-
-print(ages)
-
 """
+I received this error: SyntaxError: cannot delete function call
+I wrote: del ages(2)
+I corrected that by writing: del ages["Mariam"]. My mistake was first that I didnt use edgy brackets and second that I nted to index a key instead of writing the key.
+"""
+
+#print(ages)
+
 for key, value in ages.items():
-    print(f"{key} is {value} years old.")
+    print(f"{key}, {value}")
 
-for key in ages:
-    print(key)
+r = [
+    [1,2,3,4,5],
+    [6,7,8,9,10]
+]
 
-for value in ages.values():
-    print(value)
-"""
-
+print(total_sum(r))
 
 
